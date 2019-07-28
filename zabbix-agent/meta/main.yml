@@ -1,0 +1,4 @@
+galaxy_info:
+  role_name: zabbix-agent
+  author: Konrad Sala
+  description: Ansible role to install zabbix-agent

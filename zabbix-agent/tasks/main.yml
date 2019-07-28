@@ -1,0 +1,6 @@
+---
+- import_tasks: install-zabbix-agent.yml
+  tags: [install]
+
+- import_tasks: discover-script.yml
+  tags: [config]
