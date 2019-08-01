@@ -1,1 +1,1 @@
-zabbix_server: "zabbix server here"
+zabbix_server_address: "zabbix server here"
