@@ -1,0 +1,34 @@
+---
+# tasks file for zabbix-agent
+
+- name: Zabbix | Install Repo
+  include: "debian.yml"
+  when:
+    - ansible_os_family == "Debian"
+
+- name: Zabbix | Install Repo
+  include: "centos.yml"
+  when:
+    - ansible_os_family == "CentOS"
+
+- name: Zabbix | Copy agent config
+  template:
+    src: zabbix_agentd.j2
+    dest: "/etc/zabbix/zabbix_agentd.conf"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+
+- name: Zabbix | open zabbix agent port
+  shell: |
+    firewall-cmd --zone=public --permanent --add-port=10050/tcp 
+    firewall-cmd --reload
+  become: yes
+
+- name: Zabbix | Start and enable service
+  service:
+    name: zabbix-agent
+    state: restarted
+    enabled: yes
+  become: yes

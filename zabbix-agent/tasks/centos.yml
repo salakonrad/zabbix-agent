@@ -1,0 +1,12 @@
+---
+- name: Zabbix | install zabbix repo
+  yum:
+    name: {{zabbix_agent_centos_repo_url}}
+    state: present
+  become: yes
+
+- name: Zabbix | install zabbix-agent
+  yum:
+    name: zabbix-agent
+    state: latest
+  become: yes
