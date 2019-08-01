@@ -25,9 +25,3 @@
         UserParameter=mount.fs.scan[*],/etc/zabbix/scripts/MountMonitor.sh scan
         UserParameter=mount.fs.ismounted[*],/etc/zabbix/scripts/MountMonitor.sh isMountpointMounted $2
     become: yes
-
-  - name: Zabbix | Restart agent
-    service:
-      name: zabbix-agent
-      state: restarted
-    become: yes

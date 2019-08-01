@@ -33,11 +33,6 @@
   shell: |
     firewall-cmd --zone=public --permanent --add-port=10050/tcp 
     firewall-cmd --reload
-  become: yes 
-
-- name: Zabbix | Start zabbix agent
-  service:
-    name: zabbix-agent
-    state: started
-    enabled: yes
+  notify:
+    - "Zabbix | Restart agent"
   become: yes
